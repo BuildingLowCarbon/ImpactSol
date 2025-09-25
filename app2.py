@@ -166,7 +166,7 @@ if st.button("➕ Ajouter cette composition"):
         "surface": 1.0,  # valeur initiale
         "couches": copy.deepcopy(pavements[type_choisi]),
     }
-    st.rerun()
+
 
 
 # Affichage des instances
@@ -200,7 +200,6 @@ else:
             # Ajouter ou supprimer
             if st.button("➕ Ajouter une couche", key=f"add2_{inst_id}"):
                 inst["couches"].insert(0, {"materiau": "Indéfini", "epaisseur_cm": 5})
-                st.rerun()
 
             # Edition des couches
             for idx, couche in enumerate(inst["couches"]):
@@ -288,21 +287,19 @@ else:
                 
                 if c5.button("➖", key=f"{inst_id}_del_{idx}"):
                     inst["couches"].pop(idx)
-                    st.rerun()
+
 
 
 
             # Ajouter ou supprimer
             if st.button("➕ Ajouter une couche", key=f"add_{inst_id}"):
                 inst["couches"].append({"materiau": "Indéfini", "epaisseur_cm": 5})
-                st.rerun()
                 
            
             st.markdown("---")
             k1, k2= st.columns([5, 5])     
             if k1.button("➖ Supprimer cette composition", key=f"del_{inst_id}"):
                 del st.session_state.instances[inst_id]
-                st.rerun()
 
     # Bouton de duplication
             if k2.button("➕Dupliquer cette composition", key=f"dup_{inst_id}"):
@@ -315,7 +312,7 @@ else:
                     # on copie aussi les couches pour pouvoir les modifier indépendamment
                     "couches": [c.copy() for c in inst["couches"]],
                 }
-                st.rerun()
+
 # -----------------------
 # Résultats comparatifs
 # -----------------------
